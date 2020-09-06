@@ -15,4 +15,15 @@
         <button>Delete</button>
     </form>
 </div>
+<div id='posts'>
+    <h3>Posts</h3>
+        <ul>
+            {% for post in posts %}
+                <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+            {% endfor %}
+        </ul>
+</div>
+<form action="/users/{{user.id}}/posts/new">
+    <button>Add Post</button>
+</form>
 {% endblock %}

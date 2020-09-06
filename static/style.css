@@ -2,3 +2,12 @@
     display: inline-block;
 }
  */
+
+ .author {
+     font-style: italics;
+ }
+
+ .xtra-button {
+     text-decoration: none;
+     color: black;
+ }

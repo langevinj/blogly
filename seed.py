@@ -1,6 +1,6 @@
 """Seed file to make sample data for blogly_db"""
 
-from models import User, db
+from models import User, db, datetime, Post
 from app import app
 
 #Create all tables
@@ -18,6 +18,20 @@ jane = User(first_name="Jane", last_name="Doe", image_url="https://img.lovepik.c
 db.session.add(john)
 db.session.add(jane)
 
+#Commit
+db.session.commit()
+
+#Add posts
+van = Post(title="Wanted: Van", content="Looking for a good price on a solid van", created_at=datetime.now(), user_id=1)
+guitarist = Post(title="ISO: Guitarist for Alt Rock Band", content="Gigging ever weekend, call 867-9305", created_at=datetime.now(), user_id=1)
+first = Post(title="First Post", content="just testing things out", created_at=datetime.now(), user_id=2)
+bookclub = Post(title="Starting a Bookclub", content="Would you like to join an up and coming bookclub? Email me here:", created_at=datetime(2020, 7, 4, 5, 2, 16, 540000), user_id=2)
+
+#Add new posts to session
+db.session.add(van)
+db.session.add(guitarist)
+db.session.add(first)
+db.session.add(bookclub)
 
 #Commit
 db.session.commit()
