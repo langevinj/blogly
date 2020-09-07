@@ -1,6 +1,6 @@
 """Seed file to make sample data for blogly_db"""
 
-from models import User, db, datetime, Post
+from models import User, db, datetime, Post, Tag, PostTag
 from app import app
 
 #Create all tables
@@ -26,12 +26,39 @@ van = Post(title="Wanted: Van", content="Looking for a good price on a solid van
 guitarist = Post(title="ISO: Guitarist for Alt Rock Band", content="Gigging ever weekend, call 867-9305", created_at=datetime.now(), user_id=1)
 first = Post(title="First Post", content="just testing things out", created_at=datetime.now(), user_id=2)
 bookclub = Post(title="Starting a Bookclub", content="Would you like to join an up and coming bookclub? Email me here:", created_at=datetime(2020, 7, 4, 5, 2, 16, 540000), user_id=2)
+organ = Post(title="Organ $100", content="Looking to sell my Roland Organ. $100 OBO.", created_at=datetime.now(), user_id=1)
 
 #Add new posts to session
 db.session.add(van)
 db.session.add(guitarist)
 db.session.add(first)
 db.session.add(bookclub)
+db.session.add(organ)
 
 #Commit
 db.session.commit()
+
+#Add tags
+# vehicle = Tag(name="vehicles")
+# music = Tag(name="music")
+# test = Tag(name="testpost")
+# literature = Tag(name="literature")
+
+#add new tags to session
+# db.session.add(vehicle)
+# db.session.add(music)
+# db.session.add(test)
+# db.session.add(literature)
+
+db.session.commit()
+
+#Add new Post-Tags to session
+tv = Tag(name='Vehicles',
+         assignments=[PostTag(post_id=van.id)])
+tm = Tag(name='Music',
+         assignments=[PostTag(post_id=guitarist.id),
+                      PostTag(post_id=organ.id)])
+
+db.session.add_all([tv, tm])
+db.session.commit()
+
