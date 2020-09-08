@@ -9,4 +9,7 @@
         <li><a href="/tags/{{tag.id}}">{{ tag.name }}</a></li>
     {% endfor %}
     </ul>
+    <form action="/tags/new">
+        <button>Add Tag</button>
+    </form>
 {% endblock %}

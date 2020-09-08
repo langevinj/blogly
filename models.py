@@ -48,6 +48,23 @@ class Post(db.Model):
         p = self
         return f"<Post id={p.id} title={p.title} created_at={p.created_at} user={p.user_id}"
 
+    def date_cleaner(self):
+        weekdays = ["Monday", "Tuesday", "Wednesday",
+                    "Thursday", "Friday", "Saturday", "Sunday"]
+        months = ["January", "February", "March", "April", "May", "June",
+                  "July", "August", "September", "October", "November", "December"]
+
+        created = self.created_at
+        day = created.weekday()
+
+        lst = str(created).replace('-', ' ').replace(':', ' ').split(" ")
+        month = 1 + int(lst[1])
+        date = lst[2]
+        time = datetime.strptime(
+            f'{lst[3]}:{lst[4]}', '%H:%W').strftime('%I:%M %p')
+
+        return f"{weekdays[day]}, {months[month]} {date}, {lst[0]} at {time}"
+
 class Tag(db.Model):
     """Tag Model"""
     __tablename__ = 'tags'
@@ -62,6 +79,8 @@ class Tag(db.Model):
 
     def __repr__(self):
         return f"<Tag {self.name} id = {self.id}"
+    
+    
 
 class PostTag(db.Model):
     """PostTag Model"""
@@ -72,3 +91,16 @@ class PostTag(db.Model):
     #still unsure about making composite key
    
 
+# def date_cleaner(created_at):
+#     """Return a more human friendly date"""
+#     weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+#     months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+#     day = created_at.weekday()
+    
+#     lst = str(created_at).replace('-', ' ').replace(':', ' ').split(" ")
+#     month = 1 + int(lst[1])
+#     date = lst[2]
+#     time = datetime.strptime(f'{lst[3]}:{lst[4]}', '%H:%W').strftime('%I:%M %p')
+
+#     return f"{weekdays[day]}, {months[month]} {date}, {lst[0]} at {time}"

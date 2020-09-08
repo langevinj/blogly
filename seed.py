@@ -62,3 +62,5 @@ tm = Tag(name='Music',
 db.session.add_all([tv, tm])
 db.session.commit()
 
+tuba = Post(title="Tuba $1000", content="Looking to buy a New Tuba.",
+             created_at=datetime.now(), user_id=1)

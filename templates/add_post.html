@@ -4,8 +4,13 @@
 {% block content %}
 <h2>Add Post for {{user.first_name}} {{user.last_name}}</h2>
 <form action="/users/{{user.id}}/posts/new" method="POST">
-    Title<input type="text" name="title" id="new-post-title"><br>
-    Content<textarea rows= "3" cols="60" name="content" id="new-post-content"></textarea><br>
+    Title: <input type="text" name="title" id="new-post-title"><br><br>
+    Content: <textarea rows= "3" cols="60" name="content" id="new-post-content"></textarea><br>
+    <br>
+    {% for tag in tags %}
+        <input type="checkbox" name="tags" value={{tag.id}} id="tag_{{tag.id}}">{{tag.name}}<br>
+    {% endfor %}
+    <br>
     <button><a href="/users/{{user.id}}" class='xtra-button'>Cancel</a></button>
     <button>Add</button>
 </form>

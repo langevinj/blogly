@@ -10,7 +10,8 @@
     {% endfor %}
 </ul>
 <form action="/tags/{{tag.id}}/delete">
-
+    <button><a href="/tags/{{tag.id}}/edit" class="xtra-button">Edit</a></button>
+    <button>Delete</button>
 </form>
 
 {% endblock %}
